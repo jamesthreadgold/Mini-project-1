@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeedTheMoose</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <script src="http://unpkg.com/tone"></script>
+  <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./threejs/build/three.module.js"
+      }
+    }
+  </script>
+
+  <script>
+    function playNote() {
+      // create a synth
+      const synth = new Tone.Synth().toDestination();
+      // play a note from that synth
+      synth.triggerAttackRelease("b2", "6n");
+    }
+  </script>
+
+  <div>
+    <h1><u>Feed The Moose</u></h1>
+    <p><u>Controls</u></p>
+    <p>Left = A</p>
+    <p>Right = D</p>
+    <p>Throw = Spacebar</p>
+  </div>
+  <div id="threejs"></div>
+
+  <script src="./src/main.js" type="module"></script>
+
+  <script>
+    //creating key press event 
+    window.addEventListener("keydown", checkKeyPress, false);
+    //calling sound when spacbar (key 32) is pressed 
+    function checkKeyPress(key){
+      if(key.keyCode == "32"){
+        playNote()
+      }
+    }
+  </script>
+</body>
+</html>
